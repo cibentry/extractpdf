@@ -1,0 +1,29 @@
+<?php
+
+include('db.php');
+session_start();
+$agent = $_POST['agent'];
+$manager = $_POST['manager'];
+$sqlagent = "select POSP_ID, Username, RM_Name, Organisation_Role from agent_table where Username = '".$agent."' AND RM_name = '".$manager."';"; // Add the semicolon here
+$resultagent = mysqli_query($con,$sqlagent);
+
+$posid = "";
+$uname = "";
+$rmn = "";
+$orgrole = "";
+$npos = "";
+
+while($dataagent = mysqli_fetch_array($resultagent)){
+    $rmn = $dataagent['RM_Name'];
+    $uname = $dataagent['Username'];
+    $posid = $dataagent['POSP_ID'];
+    $orgrole = $dataagent['Organisation_Role'];
+    if($orgrole === "NON POSP"){
+        $npos = $dataagent['Username'];
+    }
+    //echo $agentoutput;
+    
+}
+$response = array('posid' => $posid, 'uname' => $uname, 'rmn' => $rmn , 'orgrole' => $orgrole, 'npos' => $npos);
+echo json_encode($response);
+?>

@@ -1,0 +1,10 @@
+2024-12-31 09:06:46 - Received POST: Array
+(
+)
+
+2024-12-31 09:06:46 - Query: SELECT entry_no, policy_start_date FROM daily_booking 
+                  WHERE UPPER(vehicle_registration_no) = UPPER(?) 
+                  OR UPPER(engine_number) = UPPER(?) 
+                  OR UPPER(chassi_number) = UPPER(?) 
+                  OR UPPER(policy_no) = UPPER(?)
+2024-12-31 09:06:46 - Response: {"exists":true,"entryNo":24,"rsd":"2024-09-04"}
